@@ -23,17 +23,24 @@ app.on('ready', function () {
         x: mainWindowState.x,
         y: mainWindowState.y,
         width: mainWindowState.width,
-        height: mainWindowState.height
+        height: mainWindowState.height,
+        "web-preferences": {
+          "web-security": false
+        },
+        "webPreferences": {
+          "webSecurity": false
+        },
     });
 
     if (mainWindowState.isMaximized) {
         mainWindow.maximize();
     }
 
-    mainWindow.loadUrl('file://' + __dirname + '/app.html');
+    //mainWindow.loadUrl('file://' + __dirname + '/app.html');
+    mainWindow.loadUrl('http://localhost:8081/debugger-ui');
 
     if (env.name !== 'production') {
-        mainWindow.openDevTools({detach: true});
+        mainWindow.openDevTools({detach: false});
         devMenu = true;
     }
 
